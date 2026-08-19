@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Docs &amp; FAQ — PodSync</title>
+  <meta name="description" content="How to install PodSync, system requirements, how gpodder.net sync works, and how on-device ad detection keeps your data private." />
+  <link rel="canonical" href="https://thinkingsapiens.github.io/podsync/docs.html" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="PodSync" />
+  <meta property="og:title" content="Docs &amp; FAQ — PodSync" />
+  <meta property="og:description" content="Install instructions, system requirements, gpodder.net sync, and privacy details for PodSync." />
+  <meta property="og:url" content="https://thinkingsapiens.github.io/podsync/docs.html" />
+  <meta property="og:image" content="https://thinkingsapiens.github.io/podsync/assets/icon-512.png" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Docs &amp; FAQ — PodSync" />
+  <meta name="twitter:description" content="Install instructions, system requirements, gpodder.net sync, and privacy details for PodSync." />
+  <meta name="twitter:image" content="https://thinkingsapiens.github.io/podsync/assets/icon-512.png" />
+
+  <link rel="stylesheet" href="assets/site.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="site">
+      <a class="brand" href="index.html">
+        <img src="assets/icon-512.png" alt="" width="28" height="28" />
+        PodSync
+      </a>
+      <nav class="site">
+        <a href="docs.html">Docs</a>
+        <a href="changelog.html">Changelog</a>
+        <a href="https://github.com/thinkingsapiens/podsync/releases">Releases</a>
+      </nav>
+    </header>
+
+    <main class="prose">
+      <h1>Docs &amp; FAQ</h1>
+      <p class="intro">Everything you need to install and use PodSync.</p>
+
+      <section>
+        <h2>System requirements</h2>
+        <ul>
+          <li>macOS 11 (Big Sur) or later</li>
+          <li>Apple Silicon (M1 or newer) — there is currently no Intel build</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Installing</h2>
+        <p>
+          Download the latest <code>.dmg</code> from the
+          <a href="https://github.com/thinkingsapiens/podsync/releases/latest">Releases page</a>,
+          open it, and drag PodSync into Applications.
+        </p>
+        <h3>"PodSync can't be opened because it is from an unidentified developer"</h3>
+        <p>
+          PodSync isn't notarized by Apple yet, so the first launch triggers
+          Gatekeeper's unidentified-developer warning. Either:
+        </p>
+        <ul>
+          <li>Right-click PodSync.app in Applications → <strong>Open</strong> → <strong>Open</strong> again in the dialog, or</li>
+          <li>Run this once in Terminal, then launch normally:</li>
+        </ul>
+        <pre><code>xattr -cr /Applications/PodSync.app</code></pre>
+        <p>This is a one-time step per install. It goes away once notarized builds ship.</p>
+      </section>
+
+      <section>
+        <h2>How gpodder.net sync works</h2>
+        <p>
+          PodSync stores your library locally in SQLite and treats
+          <a href="https://gpodder.net" target="_blank" rel="noopener">gpodder.net</a>
+          as a sync target, not a backend — the app works fully offline and
+          reconciles with gpodder.net (subscriptions, play state) whenever
+          you're online. Sign in with your existing gpodder.net account, or
+          a self-hosted, API-compatible server.
+        </p>
+      </section>
+
+      <section>
+        <h2>Privacy &amp; on-device ad detection</h2>
+        <p>
+          Ad detection and transcription run entirely on your Mac using a
+          local model — no audio, transcript, or listening data is sent
+          anywhere for this feature. If you optionally connect a remote
+          LLM API for ad detection instead, only that provider sees the
+          transcript, not PodSync's developers.
+        </p>
+      </section>
+
+      <section>
+        <h2>Updating</h2>
+        <p>
+          PodSync checks for updates automatically and shows a "Check for
+          Updates" control in Settings. When a new version is available you
+          can review the release notes and install it in place — no need to
+          re-download a <code>.dmg</code> manually.
+        </p>
+      </section>
+
+      <section>
+        <h2>Source</h2>
+        <p>
+          PodSync's source is closed for now. This repository
+          (<a href="https://github.com/thinkingsapiens/podsync">thinkingsapiens/podsync</a>)
+          hosts signed releases and this site.
+        </p>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div>
+        <a href="docs.html">Docs</a>
+        <a href="changelog.html">Changelog</a>
+        <a href="https://github.com/thinkingsapiens/podsync/releases">Releases</a>
+      </div>
+      <div>&copy; <span id="year"></span> PodSync</div>
+    </footer>
+  </div>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>

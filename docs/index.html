@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PodSync — a lean, native macOS podcast client</title>
+  <meta name="description" content="PodSync is a fast, native-feeling macOS podcast client for Apple Silicon. Syncs with gpodder.net, works fully offline, and skips ads on-device — no cloud, no tracking." />
+  <link rel="canonical" href="https://thinkingsapiens.github.io/podsync/" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="PodSync" />
+  <meta property="og:title" content="PodSync — a lean, native macOS podcast client" />
+  <meta property="og:description" content="Fast, native-feeling macOS podcast client for Apple Silicon. gpodder.net sync, fully offline, on-device ad-skip — no cloud, no tracking." />
+  <meta property="og:url" content="https://thinkingsapiens.github.io/podsync/" />
+  <meta property="og:image" content="https://thinkingsapiens.github.io/podsync/assets/icon-512.png" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="PodSync — a lean, native macOS podcast client" />
+  <meta name="twitter:description" content="Fast, native-feeling macOS podcast client for Apple Silicon. gpodder.net sync, fully offline, on-device ad-skip — no cloud, no tracking." />
+  <meta name="twitter:image" content="https://thinkingsapiens.github.io/podsync/assets/icon-512.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "PodSync",
+    "operatingSystem": "macOS 11+ (Apple Silicon)",
+    "applicationCategory": "MultimediaApplication",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "url": "https://thinkingsapiens.github.io/podsync/",
+    "downloadUrl": "https://github.com/thinkingsapiens/podsync/releases/latest",
+    "softwareHelp": "https://thinkingsapiens.github.io/podsync/docs.html"
+  }
+  </script>
+
+  <link rel="stylesheet" href="assets/site.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="site">
+      <a class="brand" href="index.html">
+        <img src="assets/icon-512.png" alt="" width="28" height="28" />
+        PodSync
+      </a>
+      <nav class="site">
+        <a href="docs.html">Docs</a>
+        <a href="changelog.html">Changelog</a>
+        <a href="https://github.com/thinkingsapiens/podsync/releases">Releases</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <img class="icon" src="assets/icon-512.png" alt="PodSync app icon" />
+        <h1>A lean, native macOS podcast client</h1>
+        <p class="lede">
+          Built for Apple Silicon with Tauri. Syncs your subscriptions and
+          play state with <a href="https://gpodder.net" target="_blank" rel="noopener">gpodder.net</a>,
+          works fully offline, and skips ads using an on-device model —
+          nothing ever leaves your Mac.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://github.com/thinkingsapiens/podsync/releases/latest">
+            Download for Mac
+          </a>
+          <a class="btn btn-secondary" href="docs.html">Read the docs</a>
+        </div>
+        <p class="req">macOS 11 Big Sur or later &middot; Apple Silicon (M1 and newer)</p>
+      </section>
+
+      <section class="features" aria-label="Features">
+        <div class="feature">
+          <h3>Offline-first</h3>
+          <p>SQLite is the source of truth on your Mac. gpodder.net is a sync target, not a dependency — the app works fully offline.</p>
+        </div>
+        <div class="feature">
+          <h3>On-device ad detection</h3>
+          <p>Flags and can auto-skip ads using a small local model. Your transcripts and listening data never leave your machine.</p>
+        </div>
+        <div class="feature">
+          <h3>gpodder.net sync</h3>
+          <p>Subscriptions and play state stay in sync across every gpodder.net-connected client you use, resumable after any outage.</p>
+        </div>
+        <div class="feature">
+          <h3>Menu bar mini player</h3>
+          <p>Close the window and keep listening from a compact tray player, without the app taking up Dock space.</p>
+        </div>
+        <div class="feature">
+          <h3>Built for Apple Silicon</h3>
+          <p>A native Tauri shell, not an Electron wrapper — small install size and low idle resource use on M-series Macs.</p>
+        </div>
+        <div class="feature">
+          <h3>Self-updating</h3>
+          <p>PodSync checks for new versions and can update itself in place, so you're never stuck manually tracking releases.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div>
+        <a href="docs.html">Docs</a>
+        <a href="changelog.html">Changelog</a>
+        <a href="https://github.com/thinkingsapiens/podsync/releases">Releases</a>
+      </div>
+      <div>&copy; <span id="year"></span> PodSync</div>
+    </footer>
+  </div>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>

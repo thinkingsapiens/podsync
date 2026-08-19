@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://thinkingsapiens.github.io/podsync/sitemap.xml
