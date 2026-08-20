@@ -24,21 +24,44 @@ def format_date(iso: str) -> str:
 def render_markdown(text: str) -> str:
     """Minimal Markdown -> HTML for release notes: bold, links, bullet
     lists, and paragraphs. Covers what `git tag -a -m` notes actually use
-    (see PACKAGING.md) without pulling in a Markdown dependency."""
+    (see PACKAGING.md) without pulling in a Markdown dependency.
+
+    Groups by line type rather than blank-line-delimited blocks, since a
+    "**Heading**" line is often immediately followed by "- " items with no
+    blank line in between (as in real release notes) — block-splitting
+    would otherwise lump the heading into the list's paragraph text."""
     text = html.escape(text)
     text = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", text)
     text = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r'<a href="\2">\1</a>', text)
 
-    parts = []
-    for block in re.split(r"\n\s*\n", text.strip()):
-        lines = [line.strip() for line in block.splitlines() if line.strip()]
-        if not lines:
-            continue
-        if all(line.startswith("- ") for line in lines):
-            items = "".join(f"<li>{line[2:].strip()}</li>" for line in lines)
+    parts: list[str] = []
+    para_lines: list[str] = []
+    list_items: list[str] = []
+
+    def flush_para() -> None:
+        if para_lines:
+            parts.append(f"<p>{'<br>'.join(para_lines)}</p>")
+            para_lines.clear()
+
+    def flush_list() -> None:
+        if list_items:
+            items = "".join(f"<li>{item}</li>" for item in list_items)
             parts.append(f"<ul>{items}</ul>")
+            list_items.clear()
+
+    for raw_line in text.strip().splitlines():
+        line = raw_line.strip()
+        if not line:
+            flush_para()
+            flush_list()
+        elif line.startswith("- "):
+            flush_para()
+            list_items.append(line[2:].strip())
         else:
-            parts.append(f"<p>{'<br>'.join(lines)}</p>")
+            flush_list()
+            para_lines.append(line)
+    flush_para()
+    flush_list()
     return "\n        ".join(parts)
 
 
