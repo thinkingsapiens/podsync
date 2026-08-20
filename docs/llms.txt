@@ -1,0 +1,20 @@
+# PodSync
+
+> A lean, native-feeling macOS podcast client for Apple Silicon. Syncs with gpodder.net, works fully offline, and detects and skips ads on-device. Nothing leaves your Mac.
+
+PodSync is a native Mac app built for Apple Silicon only (no Intel build), with a small install size and low idle resource use. SQLite is the local source of truth; gpodder.net is a sync target the app reconciles subscriptions and play state with when online, not a required backend. Ad detection and episode transcription run on-device by default using a local model; a remote OpenAI-compatible API can be used instead. Free during the alpha/beta testing period.
+
+## Docs
+
+- [Home](https://thinkingsapiens.github.io/podsync/): Overview, feature list, download link
+- [Docs & FAQ](https://thinkingsapiens.github.io/podsync/docs.html): System requirements, install/Gatekeeper workaround, gpodder.net sync, privacy, updating
+- [Changelog](https://thinkingsapiens.github.io/podsync/changelog.html): Version history, generated from GitHub Releases
+
+## Releases
+
+- [Latest release](https://github.com/thinkingsapiens/podsync/releases/latest): Signed .dmg download and release notes
+- [All releases](https://github.com/thinkingsapiens/podsync/releases): Full release history
+
+## Optional
+
+- [thinkingsapiens/podsync](https://github.com/thinkingsapiens/podsync): Distribution + website repo, releases and this site only, app source is closed

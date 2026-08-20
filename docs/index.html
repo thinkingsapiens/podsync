@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PodSync — a lean, native macOS podcast client</title>
-  <meta name="description" content="PodSync is a fast, native-feeling macOS podcast client for Apple Silicon. Syncs with gpodder.net, works fully offline, and skips ads on-device — no cloud, no tracking." />
+  <title>PodSync: a lean, native macOS podcast client</title>
+  <meta name="description" content="PodSync is a fast, native-feeling macOS podcast client for Apple Silicon. Syncs with gpodder.net, works fully offline, and skips ads on-device. Nothing leaves your Mac." />
   <link rel="canonical" href="https://thinkingsapiens.github.io/podsync/" />
 
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
@@ -12,14 +12,14 @@
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="PodSync" />
-  <meta property="og:title" content="PodSync — a lean, native macOS podcast client" />
-  <meta property="og:description" content="Fast, native-feeling macOS podcast client for Apple Silicon. gpodder.net sync, fully offline, on-device ad-skip — no cloud, no tracking." />
+  <meta property="og:title" content="PodSync: a lean, native macOS podcast client" />
+  <meta property="og:description" content="A fast, native-feeling macOS podcast client for Apple Silicon. Syncs with gpodder.net, works offline, and skips ads on-device." />
   <meta property="og:url" content="https://thinkingsapiens.github.io/podsync/" />
   <meta property="og:image" content="https://thinkingsapiens.github.io/podsync/assets/icon-512.png" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="PodSync — a lean, native macOS podcast client" />
-  <meta name="twitter:description" content="Fast, native-feeling macOS podcast client for Apple Silicon. gpodder.net sync, fully offline, on-device ad-skip — no cloud, no tracking." />
+  <meta name="twitter:title" content="PodSync: a lean, native macOS podcast client" />
+  <meta name="twitter:description" content="A fast, native-feeling macOS podcast client for Apple Silicon. Syncs with gpodder.net, works offline, and skips ads on-device." />
   <meta name="twitter:image" content="https://thinkingsapiens.github.io/podsync/assets/icon-512.png" />
 
   <script type="application/ld+json">
@@ -27,12 +27,64 @@
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "PodSync",
+    "description": "A lean, native-feeling macOS podcast client for Apple Silicon. Syncs subscriptions and play state with gpodder.net, works fully offline, and detects and skips ads using an on-device model. Nothing leaves your Mac.",
     "operatingSystem": "macOS 11+ (Apple Silicon)",
     "applicationCategory": "MultimediaApplication",
+    "softwareRequirements": "macOS 11 (Big Sur) or later, Apple Silicon (M1 or newer)",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
     "url": "https://thinkingsapiens.github.io/podsync/",
     "downloadUrl": "https://github.com/thinkingsapiens/podsync/releases/latest",
-    "softwareHelp": "https://thinkingsapiens.github.io/podsync/docs.html"
+    "releaseNotes": "https://thinkingsapiens.github.io/podsync/changelog.html",
+    "softwareHelp": "https://thinkingsapiens.github.io/podsync/docs.html",
+    "image": "https://thinkingsapiens.github.io/podsync/assets/icon-512.png",
+    "author": { "@type": "Organization", "name": "thinkingsapiens", "url": "https://github.com/thinkingsapiens" },
+    "featureList": [
+      "gpodder.net subscription and play-state sync",
+      "Offline-first local library (SQLite)",
+      "On-device ad detection and auto-skip",
+      "On-device episode transcription",
+      "Menu bar mini player",
+      "Self-updating"
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is PodSync a native macOS podcast player?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. PodSync is a native Mac app, built for Apple Silicon only, with a small install size and low idle resource use. There's currently no Intel, Windows, or Linux build." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I log in, and which sync providers does it support?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sign in with your existing gpodder.net account, or a self-hosted, API-compatible gpodder server. That's the only sync provider PodSync talks to: there's no separate PodSync account or cloud backend. Your local SQLite library is the source of truth; gpodder.net is a sync target the app reconciles subscriptions and play state with whenever you're online." }
+      },
+      {
+        "@type": "Question",
+        "name": "What does gpodder.net sync actually keep in sync?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Subscriptions and play state (what you've played and where you left off), shared across every gpodder.net-connected client you use, PodSync included. Sync is resumable after an outage or crash, so it's safe to go offline and come back later." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does PodSync skip ads automatically?",
+        "acceptedAnswer": { "@type": "Answer", "text": "PodSync detects ads in episodes using a local on-device model by default, so nothing is uploaded for this to work. Detected ads can be auto-skipped, currently an experimental feature. You can connect your own OpenAI-compatible remote LLM API instead of the on-device model." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my listening data private?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Ad detection and episode transcription run entirely on your Mac by default, and nothing about what you listen to is sent anywhere for those features to work. gpodder.net only ever sees subscriptions and play state." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is PodSync free?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Free during the alpha/beta testing period." }
+      }
+    ]
   }
   </script>
 
@@ -57,10 +109,10 @@
         <img class="icon" src="assets/icon-512.png" alt="PodSync app icon" />
         <h1>A lean, native macOS podcast client</h1>
         <p class="lede">
-          Built for Apple Silicon with Tauri. Syncs your subscriptions and
+          A native app built for Apple Silicon. Syncs your subscriptions and
           play state with <a href="https://gpodder.net" target="_blank" rel="noopener">gpodder.net</a>,
-          works fully offline, and skips ads using an on-device model —
-          nothing ever leaves your Mac.
+          works fully offline, and skips ads using an on-device model.
+          Nothing ever leaves your Mac.
         </p>
         <div class="cta-row">
           <a class="btn btn-primary" href="https://github.com/thinkingsapiens/podsync/releases/latest">
@@ -74,7 +126,7 @@
       <section class="features" aria-label="Features">
         <div class="feature">
           <h3>Offline-first</h3>
-          <p>SQLite is the source of truth on your Mac. gpodder.net is a sync target, not a dependency — the app works fully offline.</p>
+          <p>SQLite is the source of truth on your Mac. gpodder.net is a sync target, not a dependency, so the app works fully offline.</p>
         </div>
         <div class="feature">
           <h3>On-device ad detection</h3>
@@ -90,12 +142,46 @@
         </div>
         <div class="feature">
           <h3>Built for Apple Silicon</h3>
-          <p>A native Tauri shell, not an Electron wrapper — small install size and low idle resource use on M-series Macs.</p>
+          <p>A small download that starts fast and stays light on battery and memory, even left running in the background all day.</p>
         </div>
         <div class="feature">
           <h3>Self-updating</h3>
           <p>PodSync checks for new versions and can update itself in place, so you're never stuck manually tracking releases.</p>
         </div>
+      </section>
+
+      <section class="faq" aria-label="Frequently asked questions">
+        <h2 class="section-title">FAQ</h2>
+
+        <details class="faq-item">
+          <summary>Is PodSync a native macOS podcast player?</summary>
+          <p>Yes. PodSync is a native Mac app, built for Apple Silicon only, with a small install size and low idle resource use. There's currently no Intel, Windows, or Linux build.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>How do I log in, and which sync providers does it support?</summary>
+          <p>Sign in with your existing <a href="https://gpodder.net" target="_blank" rel="noopener">gpodder.net</a> account, or a self-hosted, API-compatible gpodder server. That's the only sync provider PodSync talks to: there's no separate PodSync account or cloud backend. Your local SQLite library is the source of truth; gpodder.net is a sync target the app reconciles subscriptions and play state with whenever you're online.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>What does gpodder.net sync actually keep in sync?</summary>
+          <p>Subscriptions and play state (what you've played and where you left off), shared across every gpodder.net-connected client you use, PodSync included. Sync is resumable after an outage or crash, so it's safe to go offline and come back later.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Does PodSync skip ads automatically?</summary>
+          <p>PodSync detects ads in episodes using a local on-device model by default, so nothing is uploaded for this to work. Detected ads can be auto-skipped, currently an experimental feature. If you'd rather use a remote model instead of the on-device one, you can connect your own OpenAI-compatible LLM API, in which case only that provider sees the transcript.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Is my listening data private?</summary>
+          <p>Yes. Ad detection and episode transcription run entirely on your Mac by default, and nothing about what you listen to is sent anywhere for those features to work. gpodder.net only ever sees subscriptions and play state, which is what it's for.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Is PodSync free?</summary>
+          <p>Free during the alpha/beta testing period. See the <a href="changelog.html">changelog</a> for what's shipped so far.</p>
+        </details>
       </section>
     </main>
 

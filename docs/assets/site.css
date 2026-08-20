@@ -94,6 +94,26 @@ nav.site a:hover { color: var(--text); }
 
 .section-title { font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin: 0 0 16px; }
 
+.faq { margin: 56px 0; }
+.faq-item {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+  padding: 4px 22px;
+  margin-bottom: 10px;
+}
+.faq-item summary {
+  padding: 16px 0;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after { content: "+"; float: right; color: var(--text-muted); font-weight: 400; }
+.faq-item[open] summary::after { content: "\2212"; }
+.faq-item p { font-size: 14px; color: var(--text-muted); margin: 0 0 18px; }
+
 /* Prose pages (docs, changelog) */
 main.prose { padding: 48px 0 32px; }
 main.prose h1 { font-size: clamp(26px, 4vw, 36px); letter-spacing: -0.02em; margin: 0 0 8px; }

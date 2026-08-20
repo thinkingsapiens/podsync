@@ -1,4 +1,52 @@
+# Everything on this site is open for crawling and indexing, including by
+# AI search/answer engines and model-training crawlers — nothing here is
+# paywalled or user-specific. The wildcard rule below already covers every
+# crawler; the named entries are explicit opt-ins for engines that check
+# their own token instead of trusting a wildcard match.
 User-agent: *
 Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+# https://llmstxt.org — a plain-text summary of this site for LLMs to read
+# instead of crawling every page.
+# LLMs.txt: https://thinkingsapiens.github.io/podsync/llms.txt
 
 Sitemap: https://thinkingsapiens.github.io/podsync/sitemap.xml
