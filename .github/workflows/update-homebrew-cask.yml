@@ -1,0 +1,49 @@
+name: Update Homebrew cask
+
+# Keeps thinkingsapiens/homebrew-podsync's Casks/podsync-app.rb in sync
+# with the latest published release here, so no manual edits are needed
+# when a new PodSync version publishes. Mirrors update-changelog.yml's
+# structure; scripts/update_homebrew_cask.py and
+# homebrew/podsync.rb.template are themselves mirrored into this repo by
+# the source repo's website.yml (edit them there, not here, see
+# PACKAGING.md over there).
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout this repo
+        # scripts/update_homebrew_cask.py and homebrew/podsync.rb.template
+        # are mirrored here by the source repo's website.yml.
+        uses: actions/checkout@v4
+
+      - name: Checkout homebrew-podsync
+        uses: actions/checkout@v4
+        with:
+          repository: thinkingsapiens/homebrew-podsync
+          token: ${{ secrets.HOMEBREW_TAP_TOKEN }}
+          path: tap
+
+      - name: Regenerate Casks/podsync-app.rb
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p tap/Casks
+          python3 scripts/update_homebrew_cask.py \
+            homebrew/podsync.rb.template \
+            tap/Casks/podsync-app.rb \
+            "${{ github.repository }}" \
+            "$GH_TOKEN"
+
+      - name: Commit and push if changed
+        working-directory: tap
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Casks/podsync-app.rb
+          git diff --cached --quiet || git commit -m "chore: bump podsync-app cask"
+          git push origin HEAD:main
