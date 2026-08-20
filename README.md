@@ -9,9 +9,13 @@ this one only holds:
   checks. Published automatically by the source repo's release workflow
   on each tag push.
 - **Website** — [`docs/`](docs/), served via GitHub Pages at
-  <https://thinkingsapiens.github.io/podsync/>. `docs/changelog.html`
-  regenerates itself from Releases on publish
+  <https://thinkingsapiens.github.io/podsync/>. `docs/index.html`,
+  `docs/docs.html`, `docs/assets/`, `docs/robots.txt`, and
+  `docs/sitemap.xml` are authored in the source repo's `website/` and
+  synced here automatically by its `website.yml` workflow — don't hand-edit
+  them here, edits will be overwritten on the next sync. `docs/changelog.html`
+  is the one exception: it regenerates itself from Releases on publish
   (see [`.github/workflows/update-changelog.yml`](.github/workflows/update-changelog.yml)).
 
-Nothing in this repo needs manual editing except `docs/index.html` and
-`docs/docs.html` when the app's features or requirements change.
+Nothing in this repo needs manual editing — both `docs/` and the changelog
+are generated/synced automatically.
