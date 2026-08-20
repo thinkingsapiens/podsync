@@ -41,6 +41,15 @@ header.site {
 }
 .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 15px; text-decoration: none; }
 .brand img { width: 28px; height: 28px; border-radius: 7px; display: block; }
+
+/* icon-512.png is solid black on transparent — invisible on the dark
+   background that's the default theme. Invert it to white by default and
+   un-invert under the light theme, same dark-first pattern as the color
+   tokens above. */
+.brand img, .hero img.icon { filter: invert(1); }
+@media (prefers-color-scheme: light) {
+  .brand img, .hero img.icon { filter: none; }
+}
 nav.site a {
   text-decoration: none;
   color: var(--text-muted);
@@ -127,7 +136,13 @@ main.prose .card {
 .release-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
 .release-head h2 { font-size: 18px; margin: 0; }
 .release-date { color: var(--text-muted); font-size: 13px; }
-.release-body { font-size: 14px; color: var(--text-muted); white-space: pre-wrap; }
+.release-body { font-size: 14px; color: var(--text-muted); }
+.release-body p { margin: 0 0 10px; }
+.release-body p:last-child { margin-bottom: 0; }
+.release-body ul { margin: 0 0 10px; padding-left: 20px; }
+.release-body li { margin-bottom: 4px; }
+.release-body strong { color: var(--text); }
+.release-body a { color: var(--accent); }
 
 footer.site {
   border-top: 1px solid var(--border);
