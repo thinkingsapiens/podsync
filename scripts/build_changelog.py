@@ -6,6 +6,7 @@ RELEASES_START/RELEASES_END sentinel comments so the rest of the page
 """
 import html
 import json
+import re
 import sys
 from datetime import datetime
 
@@ -20,10 +21,31 @@ def format_date(iso: str) -> str:
         return iso or ""
 
 
+def render_markdown(text: str) -> str:
+    """Minimal Markdown -> HTML for release notes: bold, links, bullet
+    lists, and paragraphs. Covers what `git tag -a -m` notes actually use
+    (see PACKAGING.md) without pulling in a Markdown dependency."""
+    text = html.escape(text)
+    text = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", text)
+    text = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r'<a href="\2">\1</a>', text)
+
+    parts = []
+    for block in re.split(r"\n\s*\n", text.strip()):
+        lines = [line.strip() for line in block.splitlines() if line.strip()]
+        if not lines:
+            continue
+        if all(line.startswith("- ") for line in lines):
+            items = "".join(f"<li>{line[2:].strip()}</li>" for line in lines)
+            parts.append(f"<ul>{items}</ul>")
+        else:
+            parts.append(f"<p>{'<br>'.join(lines)}</p>")
+    return "\n        ".join(parts)
+
+
 def render_release(release: dict) -> str:
     name = html.escape(release.get("name") or release["tag_name"])
     date = format_date(release.get("published_at") or "")
-    body = html.escape(release.get("body") or "No release notes.")
+    body = render_markdown(release.get("body") or "No release notes.")
     url = release["html_url"]
     return (
         '      <article class="release">\n'
@@ -31,7 +53,7 @@ def render_release(release: dict) -> str:
         f"          <h2>{name}</h2>\n"
         f'          <span class="release-date">{date}</span>\n'
         "        </div>\n"
-        f'        <p class="release-body">{body}</p>\n'
+        f'        <div class="release-body">\n        {body}\n        </div>\n'
         f'        <p><a href="{url}">View on GitHub &rarr;</a></p>\n'
         "      </article>"
     )
