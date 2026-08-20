@@ -46,7 +46,30 @@
       </p>
 
       <!-- RELEASES_START -->
-      <p>No releases published yet — check back soon.</p>
+      <article class="release">
+        <div class="release-head">
+          <h2>PodSync v0.1.0-alpha.1</h2>
+          <span class="release-date">August 19, 2026</span>
+        </div>
+        <p class="release-body">First alpha build — free during testing.
+
+**Features**
+- gpodder.net login &amp; sync (subscriptions and play state)
+- Offline-first local library (SQLite) — works without a connection
+- Podcast search (iTunes + optional Podcast Index API)
+- Episode downloads with a download manager
+- Artwork caching
+- Full episode transcripts (on-device Whisper)
+- Ad detection — fully on-device by default (nothing leaves your Mac), or bring your own OpenAI-compatible remote LLM API instead
+- Experimental auto-skip for detected ads
+- Menu bar mini player
+- Light/dark/system theme, follows macOS appearance
+- Self-updating via this release pipeline
+
+macOS 11+, Apple Silicon only. Not notarized yet — see the [Docs page](https://thinkingsapiens.github.io/podsync/docs.html) for the one-time Gatekeeper workaround.
+</p>
+        <p><a href="https://github.com/thinkingsapiens/podsync/releases/tag/v0.1.0-alpha.1">View on GitHub &rarr;</a></p>
+      </article>
       <!-- RELEASES_END -->
     </main>
 
