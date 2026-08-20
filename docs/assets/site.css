@@ -78,6 +78,61 @@ nav.site a:hover { color: var(--text); }
 .btn-secondary { color: var(--text); background: transparent; }
 .req { color: var(--text-muted); font-size: 13px; margin-top: 14px; }
 
+.install {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+  margin-top: 18px;
+  padding: 6px 6px 6px 14px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+.install code {
+  min-width: 0;
+  overflow-x: auto;
+  white-space: nowrap;
+  text-align: left;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 13px;
+  color: var(--text);
+}
+/* Shared by the hero install line and the docs command blocks. */
+button.copy {
+  flex: none;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+button.copy:hover { color: var(--text); border-color: var(--text-muted); }
+button.copy.copied { color: var(--accent); border-color: var(--accent); }
+
+/* A command block with its own copy button (docs pages). */
+main.prose .cmd {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+  margin: 0 0 12px;
+}
+main.prose .cmd pre {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+}
+main.prose .cmd pre code { white-space: pre; }
+main.prose .cmd button.copy {
+  background: var(--bg-elevated);
+  border-radius: 10px;
+  padding: 0 14px;
+}
+
 .features {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -113,6 +168,22 @@ nav.site a:hover { color: var(--text); }
 .faq-item summary::after { content: "+"; float: right; color: var(--text-muted); font-weight: 400; }
 .faq-item[open] summary::after { content: "\2212"; }
 .faq-item p { font-size: 14px; color: var(--text-muted); margin: 0 0 18px; }
+.faq-item p:not(:last-of-type) { margin-bottom: 10px; }
+.faq-item a { color: var(--accent); }
+.faq-item code {
+  display: inline-block;
+  max-width: 100%;
+  overflow-x: auto;
+  vertical-align: bottom;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 3px 7px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12.5px;
+  color: var(--text);
+  white-space: nowrap;
+}
 
 /* Prose pages (docs, changelog) */
 main.prose { padding: 48px 0 32px; }
@@ -124,7 +195,25 @@ main.prose h3 { font-size: 15px; margin: 20px 0 6px; }
 main.prose p { font-size: 15px; margin: 0 0 12px; }
 main.prose p, main.prose li { color: var(--text); }
 main.prose ul { margin: 0 0 12px; padding-left: 20px; }
+main.prose ol { margin: 0 0 16px; padding-left: 22px; }
+main.prose ol li { margin-bottom: 10px; padding-left: 2px; }
+main.prose ol li::marker { color: var(--text-muted); font-variant-numeric: tabular-nums; }
 main.prose li { font-size: 15px; margin-bottom: 6px; }
+main.prose kbd {
+  display: inline-block;
+  min-width: 1.6em;
+  margin: 0 1px;
+  padding: 1px 6px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-bottom-width: 2px;
+  border-radius: 5px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--text);
+}
 main.prose code {
   background: var(--bg-elevated);
   border: 1px solid var(--border);

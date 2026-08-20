@@ -39,11 +39,17 @@
     "image": "https://thinkingsapiens.github.io/podsync/assets/icon-512.png",
     "author": { "@type": "Organization", "name": "thinkingsapiens", "url": "https://github.com/thinkingsapiens" },
     "featureList": [
-      "gpodder.net subscription and play-state sync",
       "Offline-first local library (SQLite)",
+      "gpodder.net subscription and play-state sync",
       "On-device ad detection and auto-skip",
-      "On-device episode transcripts with follow-along and search",
+      "On-device episode transcripts",
+      "Transcript follow-along with click-to-seek",
+      "Full-text search inside an episode",
+      "Download manager with pause, resume, and cancel",
+      "Episode waveform with click-to-seek playhead",
+      "System, Light, and Dark appearance",
       "Menu bar mini player",
+      "Built for Apple Silicon",
       "Self-updating"
     ]
   }
@@ -78,6 +84,11 @@
         "@type": "Question",
         "name": "Is my listening data private?",
         "acceptedAnswer": { "@type": "Answer", "text": "Yes. Ad detection and episode transcription run entirely on your Mac by default, and nothing about what you listen to is sent anywhere for those features to work. gpodder.net only ever sees subscriptions and play state." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need Homebrew to install PodSync?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No, but it's the easiest path: brew install thinkingsapiens/podsync/podsync-app installs the app and tracks new releases. Without Homebrew, download the DMG from the releases page, or run the install script: /bin/bash -c \"$(curl -fsSL https://thinkingsapiens.github.io/podsync/install.sh)\". PodSync also updates itself in place once installed, whichever way you got it." }
       },
       {
         "@type": "Question",
@@ -120,6 +131,10 @@
           </a>
           <a class="btn btn-secondary" href="docs.html">Read the docs</a>
         </div>
+        <div class="install">
+          <code id="brew-cmd">brew install thinkingsapiens/podsync/podsync-app</code>
+          <button class="copy" type="button" data-copy="#brew-cmd">Copy</button>
+        </div>
         <p class="req">macOS 11 Big Sur or later &middot; Apple Silicon (M1 and newer)</p>
       </section>
 
@@ -149,8 +164,28 @@
           <p>PodSync checks for new versions and can update itself in place, so you're never stuck manually tracking releases.</p>
         </div>
         <div class="feature">
-          <h3>Transcripts, follow-along, and search</h3>
-          <p>Every episode gets a full on-device transcript. Follow along as it plays, jump to any line, and search across an episode to find exactly what was said. It can also detect ads in the audio and skip them automatically.</p>
+          <h3>On-device transcripts</h3>
+          <p>Every episode gets a full transcript, generated on your Mac. Nothing is uploaded, and there's no per-minute API bill.</p>
+        </div>
+        <div class="feature">
+          <h3>Follow along while it plays</h3>
+          <p>The transcript tracks playback line by line. Click any line to jump straight to that moment in the audio.</p>
+        </div>
+        <div class="feature">
+          <h3>Search inside an episode</h3>
+          <p>Search an episode's transcript to find exactly what was said, then jump to the spot where it was said.</p>
+        </div>
+        <div class="feature">
+          <h3>Downloads you control</h3>
+          <p>Queue episodes for offline listening with live progress. Pause, resume, or cancel any download, and choose where the files live.</p>
+        </div>
+        <div class="feature">
+          <h3>Waveform scrubbing</h3>
+          <p>Each episode draws its actual audio waveform with a live playhead. Click anywhere on it to seek, and see at a glance how far into a paused episode you got.</p>
+        </div>
+        <div class="feature">
+          <h3>Light and dark</h3>
+          <p>System, Light, or Dark, set in Settings and applied to the native window chrome. The menu bar icon adapts on its own.</p>
         </div>
       </section>
 
@@ -183,6 +218,15 @@
         </details>
 
         <details class="faq-item">
+          <summary>Do I need Homebrew to install PodSync?</summary>
+          <p>No, but it's the easiest path, since it also tracks new releases for you:</p>
+          <p><code>brew install thinkingsapiens/podsync/podsync-app</code></p>
+          <p>Without Homebrew, grab the DMG from the <a href="https://github.com/thinkingsapiens/podsync/releases/latest">releases page</a>, or run the install script, which downloads the same DMG and copies the app into <code>/Applications</code>:</p>
+          <p><code>/bin/bash -c "$(curl -fsSL https://thinkingsapiens.github.io/podsync/install.sh)"</code></p>
+          <p>You can <a href="install.sh">read the script</a> before running it. Either way, PodSync updates itself in place once installed.</p>
+        </details>
+
+        <details class="faq-item">
           <summary>Is PodSync free?</summary>
           <p>Free during the alpha/beta testing period. See the <a href="changelog.html">changelog</a> for what's shipped so far.</p>
         </details>
@@ -198,6 +242,6 @@
       <div>&copy; <span id="year"></span> PodSync</div>
     </footer>
   </div>
-  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="assets/site.js"></script>
 </body>
 </html>

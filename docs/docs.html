@@ -40,7 +40,7 @@
 
     <main class="prose">
       <h1>Docs &amp; FAQ</h1>
-      <p class="intro">Everything you need to install and use PodSync.</p>
+      <p class="intro">Fastest install: paste one command into Terminal, about two minutes. Everything below that is reference.</p>
 
       <section>
         <h2>System requirements</h2>
@@ -52,21 +52,87 @@
 
       <section>
         <h2>Installing</h2>
+
+        <h3>Install script</h3>
+        <p>
+          Downloads the latest release and copies PodSync into
+          <code>/Applications</code>. You don't need Homebrew. If you've never
+          opened Terminal, here is the whole thing:
+        </p>
+        <ol>
+          <li>
+            Open Terminal. In Finder it's under <strong>Applications</strong> →
+            <strong>Utilities</strong> → <strong>Terminal</strong>, so
+            double-click it there. (Faster: press <kbd>⌘</kbd><kbd>Space</kbd>,
+            type <em>terminal</em>, press <kbd>Return</kbd>.) You get a window
+            with one line of text and a blinking cursor. That's the prompt,
+            and it's waiting for you.
+          </li>
+          <li>Copy the command below using its Copy button.</li>
+        </ol>
+        <div class="cmd">
+          <pre><code id="cmd-script">/bin/bash -c "$(curl -fsSL https://thinkingsapiens.github.io/podsync/install.sh)"</code></pre>
+          <button class="copy" type="button" data-copy="#cmd-script">Copy</button>
+        </div>
+        <ol start="3">
+          <li>
+            Click the Terminal window, press <kbd>⌘</kbd><kbd>V</kbd> to paste
+            the command, then press <kbd>Return</kbd> to run it.
+          </li>
+          <li>
+            Wait. A progress bar fills while the 13 MB download runs, and the
+            last line tells you which version it installed. It never asks for
+            your password.
+          </li>
+          <li>Quit Terminal and open PodSync from your Applications folder.</li>
+        </ol>
+        <p>
+          Pasting a command you can't read is a fair thing to be wary of, so
+          <a href="install.sh">read the script</a> first if you want. It's plain
+          text. Quit PodSync before you run it if the app is already open. When
+          it replaces an existing install, it moves the old copy to the Trash
+          instead of deleting it.
+        </p>
+
+        <h3>Homebrew</h3>
+        <p>
+          If you already use <a href="https://brew.sh" target="_blank" rel="noopener">Homebrew</a>,
+          this installs the same build and follows new releases, so
+          <code>brew upgrade</code> keeps you current. Paste it into Terminal
+          the same way and press <kbd>Return</kbd>.
+        </p>
+        <div class="cmd">
+          <pre><code id="cmd-brew">brew install thinkingsapiens/podsync/podsync-app</code></pre>
+          <button class="copy" type="button" data-copy="#cmd-brew">Copy</button>
+        </div>
+
+        <h3>Manual download</h3>
         <p>
           Download the latest <code>.dmg</code> from the
           <a href="https://github.com/thinkingsapiens/podsync/releases/latest">Releases page</a>,
           open it, and drag PodSync into Applications.
         </p>
+
         <h3>"PodSync can't be opened because it is from an unidentified developer"</h3>
         <p>
-          PodSync isn't notarized by Apple yet, so the first launch triggers
-          Gatekeeper's unidentified-developer warning. Either:
+          PodSync isn't notarized by Apple yet, so the first launch trips
+          Gatekeeper's unidentified-developer warning. The install script and
+          the Homebrew cask clear this for you. If you installed by hand from
+          the <code>.dmg</code>, you have two options.
         </p>
         <ul>
           <li>Right-click PodSync.app in Applications → <strong>Open</strong> → <strong>Open</strong> again in the dialog, or</li>
-          <li>Run this once in Terminal, then launch normally:</li>
+          <li>
+            Open Terminal (<strong>Applications</strong> →
+            <strong>Utilities</strong> → <strong>Terminal</strong>), paste the
+            command below, press <kbd>Return</kbd>, then launch PodSync
+            normally. You only need to do this once:
+          </li>
         </ul>
-        <pre><code>xattr -cr /Applications/PodSync.app</code></pre>
+        <div class="cmd">
+          <pre><code id="cmd-xattr">xattr -cr /Applications/PodSync.app</code></pre>
+          <button class="copy" type="button" data-copy="#cmd-xattr">Copy</button>
+        </div>
         <p>This is a one-time step per install. It goes away once notarized builds ship.</p>
       </section>
 
@@ -122,6 +188,6 @@
       <div>&copy; <span id="year"></span> PodSync</div>
     </footer>
   </div>
-  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="assets/site.js"></script>
 </body>
 </html>
