@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 """Regenerates docs/changelog.html's release list from a GitHub releases
-API dump (see .github/workflows/update-changelog.yml). Splices between the
-RELEASES_START/RELEASES_END sentinel comments so the rest of the page
-(head, nav, footer) is untouched.
+API dump. Splices between the RELEASES_START/RELEASES_END sentinel comments
+so the rest of the page (head, nav, footer) is untouched.
+
+Canonical copy lives here, in thinkingsapiens/gpodder-mac. website.yml
+mirrors it into thinkingsapiens/podsync's scripts/ on every push, where
+that repo's own update-changelog.yml runs it whenever a release publishes
+(see PACKAGING.md). Edit only here, not in podsync directly.
 """
 import html
 import json
@@ -28,8 +32,8 @@ def render_markdown(text: str) -> str:
 
     Groups by line type rather than blank-line-delimited blocks, since a
     "**Heading**" line is often immediately followed by "- " items with no
-    blank line in between (as in real release notes) — block-splitting
-    would otherwise lump the heading into the list's paragraph text."""
+    blank line in between, as in real release notes. Block-splitting would
+    otherwise lump the heading into the list's paragraph text."""
     text = html.escape(text)
     text = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", text)
     text = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r'<a href="\2">\1</a>', text)
@@ -92,7 +96,7 @@ def main(releases_path: str, page_path: str) -> None:
     body = (
         "\n".join(render_release(r) for r in releases)
         if releases
-        else "      <p>No releases published yet — check back soon.</p>"
+        else "      <p>No releases published yet. Check back soon.</p>"
     )
 
     with open(page_path, encoding="utf-8") as f:
