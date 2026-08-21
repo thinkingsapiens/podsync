@@ -42,7 +42,7 @@ header.site {
 .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 15px; text-decoration: none; }
 .brand img { width: 28px; height: 28px; border-radius: 7px; display: block; }
 
-/* icon-512.png is solid black on transparent — invisible on the dark
+/* icon-512.png is solid black on transparent, invisible on the dark
    background that's the default theme. Invert it to white by default and
    un-invert under the light theme, same dark-first pattern as the color
    tokens above. */

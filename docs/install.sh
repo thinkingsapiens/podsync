@@ -6,7 +6,7 @@
 #
 # Downloads the latest release for your platform from GitHub and installs
 # it: PodSync.app into /Applications on macOS, or the AppImage into
-# ~/.local/bin on Linux. Windows isn't handled here — download and run the
+# ~/.local/bin on Linux. Windows isn't handled here: download and run the
 # .exe installer from the releases page instead.
 #
 # Trust model: macOS builds are ad-hoc signed, not notarized, so this script
@@ -47,7 +47,7 @@ main() {
   case "$os" in
     Darwin) install_macos "$version" ;;
     Linux)  install_linux "$version" ;;
-    *)      abort "Unsupported OS: ${os}. PodSync supports macOS, Windows, and Linux — on Windows, download the .exe installer from https://github.com/${REPO}/releases/latest instead of running this script." ;;
+    *)      abort "Unsupported OS: ${os}. PodSync supports macOS, Windows, and Linux. On Windows, download the .exe installer from https://github.com/${REPO}/releases/latest instead of running this script." ;;
   esac
 }
 
@@ -113,7 +113,7 @@ install_macos() {
 
 # --- Linux: download the .AppImage, make it executable, and place it in
 # ~/.local/bin/podsync (or $PODSYNC_INSTALL_DIR). No sudo, no package
-# manager detection — .AppImage runs the same way on every distro. Prefer
+# manager detection: .AppImage runs the same way on every distro. Prefer
 # the .deb/.rpm from the releases page instead if you want it managed by
 # your system's package manager. ---
 install_linux() {
@@ -187,7 +187,7 @@ verify_checksum() {
 # Replaces an existing macOS install without deleting anything: the old
 # bundle is moved to the Trash in a single mv, so a mistake stays
 # recoverable from Finder. Only a path that really is an app bundle is
-# touched — a stray file or a symlink sitting at that path stops the
+# touched: a stray file or a symlink sitting at that path stops the
 # install instead of being swept away.
 retire_existing_macos() {
   local app_path="$1" app_name="$2" trash dest stamp
@@ -214,7 +214,7 @@ retire_existing_macos() {
     info "Moved the previous install to the Trash"
   else
     # No usable Trash (running under sudo, say). Rename in place rather than
-    # delete, and say so — a leftover folder is cheaper than a bad delete.
+    # delete, and say so: a leftover folder is cheaper than a bad delete.
     dest="${app_path%.app}-previous-${stamp}.app"
     mv "$app_path" "$dest" || abort "Could not move the existing ${app_name} aside."
     warn "No usable Trash; previous install renamed to ${dest##*/}. Delete it once the new one works."

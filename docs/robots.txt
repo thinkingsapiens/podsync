@@ -1,5 +1,5 @@
 # Everything on this site is open for crawling and indexing, including by
-# AI search/answer engines and model-training crawlers — nothing here is
+# AI search/answer engines and model-training crawlers. Nothing here is
 # paywalled or user-specific. The wildcard rule below already covers every
 # crawler; the named entries are explicit opt-ins for engines that check
 # their own token instead of trusting a wildcard match.
@@ -45,7 +45,7 @@ Allow: /
 User-agent: meta-externalagent
 Allow: /
 
-# https://llmstxt.org — a plain-text summary of this site for LLMs to read
+# https://llmstxt.org: a plain-text summary of this site for LLMs to read
 # instead of crawling every page.
 # LLMs.txt: https://thinkingsapiens.github.io/podsync/llms.txt
 
