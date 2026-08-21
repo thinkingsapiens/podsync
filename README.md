@@ -19,16 +19,36 @@
 
 ## Why PodSync?
 
-- **Nothing leaves your Mac.** Ad detection and episode transcription run entirely on-device. No audio, no transcript, and no listening history goes anywhere except gpodder.net for sync.
-- **Actually offline.** Your library lives in a local SQLite database, not a cache in front of someone else's API. Browse, play, and manage downloads with no connection at all.
-- **Skips ads without touching your files.** On-device detection finds sponsor reads and skips them during playback. The downloaded episode itself is never re-encoded or cut.
-- **Search inside what you've heard.** On-device transcripts make every episode full-text searchable, with click-to-seek from any line.
-- **See where the ad breaks are.** An episode waveform view highlights detected ad segments right on the timeline.
-- **Syncs without locking you in.** Subscriptions and play state sync with gpodder.net, or a self-hosted API-compatible server, using resumable sync. Go offline for a week and it catches up cleanly when you're back, and it plays fine alongside other gpodder-protocol clients too.
-- **Downloads that behave.** Pause, resume, and cancel, with storage usage that's actually accurate.
-- **One less menu bar hog.** A native menu-bar mini player keeps playback controls reachable without the main window open.
-- **Native, not a browser tab.** Built on Tauri and Rust: a small, fast binary with native light/dark appearance, not an Electron shell bundling its own browser engine.
-- **Updates itself.** Releases are signed and self-updating. Check from Settings, or just leave it alone.
+- **Nothing leaves your Mac.**
+  - Ad detection and episode transcription run entirely on-device.
+  - Nothing goes out except sync data to gpodder.net.
+- **Actually offline.**
+  - Your library lives in a local SQLite database, not a cache in front of someone else's API.
+  - Browse, play, and manage downloads with zero connection.
+- **Skips ads without touching your files.**
+  - On-device detection finds sponsor reads and skips them during playback.
+  - The downloaded episode itself is never re-encoded or cut.
+- **Search inside what you've heard.**
+  - On-device transcripts make every episode full-text searchable.
+  - Click any line in the transcript to jump straight to that moment.
+- **See where the ad breaks are.**
+  - The episode waveform highlights every detected ad segment right on the timeline.
+- **Syncs without locking you in.**
+  - Subscriptions and play state sync with gpodder.net, or a self-hosted API-compatible server.
+  - Sync is resumable, so a dropped connection or a week offline catches up cleanly.
+  - Runs fine alongside other gpodder-protocol clients.
+- **Downloads that behave.**
+  - Pause, resume, or cancel any download.
+  - Storage usage shown is accurate, not estimated.
+- **One less menu bar hog.**
+  - A native menu-bar mini player keeps controls one click away.
+  - Works even with the main window closed.
+- **Native, not a browser tab.**
+  - Built on Tauri and Rust, not Electron.
+  - A small, fast binary with native light/dark appearance.
+- **Updates itself.**
+  - Releases are signed and self-updating.
+  - Check manually from Settings, or just leave it alone.
 
 ## Sync compatibility
 
