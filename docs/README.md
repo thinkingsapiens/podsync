@@ -21,7 +21,7 @@
 
 ## Why PodSync?
 
-- **Nothing leaves your Mac.**
+- **Nothing leaves your device.**
   - Ad detection and episode transcription run entirely on-device.
   - Nothing goes out except sync data to gpodder.net.
 - **Actually offline.**

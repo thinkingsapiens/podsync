@@ -4,10 +4,12 @@
 
 # PodSync
 
-**A lean, native podcast client for macOS.** Offline-first, synced with gpodder.net, ads skipped on-device.
+**A lean, native podcast client for macOS, Windows, and Linux.** Offline-first, synced with gpodder.net, ads skipped on-device.
 
 [![Latest release](https://img.shields.io/github/v/release/thinkingsapiens/podsync?include_prereleases&label=release&color=c6ff1a)](https://github.com/thinkingsapiens/podsync/releases/latest)
-[![Platform](https://img.shields.io/badge/platform-macOS%20%C2%B7%20Apple%20Silicon-lightgrey.svg)](https://github.com/thinkingsapiens/podsync/releases/latest)
+[![macOS](https://img.shields.io/badge/macOS-Apple%20Silicon%20%C2%B7%20Intel-lightgrey.svg)](https://github.com/thinkingsapiens/podsync/releases/latest)
+[![Windows](https://img.shields.io/badge/Windows-10%2B-0078D6.svg)](https://github.com/thinkingsapiens/podsync/releases/latest)
+[![Linux](https://img.shields.io/badge/Linux-x86__64-FCC624.svg)](https://github.com/thinkingsapiens/podsync/releases/latest)
 [![Homebrew](https://img.shields.io/badge/homebrew-podsync--app-orange.svg)](https://github.com/thinkingsapiens/homebrew-podsync)
 
 **[Website](https://thinkingsapiens.github.io/podsync/)** · **[Docs](https://thinkingsapiens.github.io/podsync/docs.html)** · **[Changelog](https://thinkingsapiens.github.io/podsync/changelog.html)** · **[Releases](https://github.com/thinkingsapiens/podsync/releases)**
@@ -19,7 +21,7 @@
 
 ## Why PodSync?
 
-- **Nothing leaves your Mac.**
+- **Nothing leaves your device.**
   - Ad detection and episode transcription run entirely on-device.
   - Nothing goes out except sync data to gpodder.net.
 - **Actually offline.**
@@ -65,13 +67,15 @@ It's the same protocol gPodder, AntennaPod, and other gpodder-compatible clients
 
 ## Install
 
+**macOS**, via Homebrew:
+
 ```sh
 brew install thinkingsapiens/podsync/podsync-app
 ```
 
-Or download the `.dmg` directly from the [latest release](https://github.com/thinkingsapiens/podsync/releases/latest).
+Or grab the platform installer directly from the [latest release](https://github.com/thinkingsapiens/podsync/releases/latest): a `.dmg` for **macOS** (Apple Silicon or Intel), a `.exe` for **Windows**, or a `.deb`/`.rpm`/`.AppImage` for **Linux**. Full instructions, including a one-line install script for macOS and Linux, are in the [docs](https://thinkingsapiens.github.io/podsync/docs.html#requirements).
 
-**Requirements:** macOS 11 (Big Sur) or later, Apple Silicon (M1 or newer). Windows and Linux builds are in progress.
+**Requirements:** macOS 11 (Big Sur) or later (Apple Silicon or Intel), Windows 10 or later, or a modern 64-bit Linux distribution.
 
 ## Quick start
 
@@ -81,7 +85,7 @@ Or download the `.dmg` directly from the [latest release](https://github.com/thi
 
 ## Screenshots we need
 
-The hero section above is a placeholder. Real shots to capture and drop into `docs/assets/`:
+The hero section above is a placeholder. Real shots to capture and drop into `assets/`:
 
 - Main library view (sidebar + episode list)
 - Episode detail view with the waveform and a detected ad segment highlighted
