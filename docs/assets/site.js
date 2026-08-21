@@ -1,5 +1,19 @@
 // Shared behaviour for every page on the site.
 
+// Best-effort OS detection for the primary download button's label. Every
+// platform link on the page points at the same Releases page regardless —
+// this only changes which word the button shows, so a misdetection (or an
+// unrecognized OS) just falls back to a neutral label, never a broken link.
+var primaryDownload = document.getElementById("primary-download");
+if (primaryDownload) {
+  var ua = navigator.userAgent || "";
+  var platformLabel = null;
+  if (/Windows/i.test(ua)) platformLabel = "Windows";
+  else if (/Mac/i.test(ua)) platformLabel = "Mac";
+  else if (/Linux/i.test(ua) && !/Android/i.test(ua)) platformLabel = "Linux";
+  primaryDownload.textContent = platformLabel ? "Download for " + platformLabel : "Download";
+}
+
 // Footer copyright year.
 var yearEl = document.getElementById("year");
 if (yearEl) {

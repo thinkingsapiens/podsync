@@ -42,22 +42,48 @@
       <h1>Docs &amp; FAQ</h1>
       <p class="intro">Fastest install: paste one command into Terminal, about two minutes. Everything below that is reference.</p>
 
-      <section>
+      <section id="requirements">
         <h2>System requirements</h2>
         <ul>
-          <li>macOS 11 (Big Sur) or later</li>
-          <li>Apple Silicon (M1 or newer). There is currently no Intel build</li>
+          <li><strong>macOS</strong>: 11 (Big Sur) or later, Apple Silicon or Intel</li>
+          <li><strong>Windows</strong>: 10 or later, 64-bit</li>
+          <li><strong>Linux</strong>: a modern 64-bit distribution &mdash; <code>.deb</code> and <code>.rpm</code> packages, or a distro-independent <code>.AppImage</code></li>
         </ul>
       </section>
 
       <section>
         <h2>Installing</h2>
 
-        <h3>Install script</h3>
+        <h3>Windows</h3>
         <p>
-          Downloads the latest release and copies PodSync into
-          <code>/Applications</code>. You don't need Homebrew. If you've never
-          opened Terminal, here is the whole thing:
+          Download the <code>.exe</code> installer from the
+          <a href="https://github.com/thinkingsapiens/podsync/releases/latest">Releases page</a>
+          and run it. PodSync isn't code-signed yet, so Windows SmartScreen
+          will warn about it &mdash; click <strong>More info</strong>, then
+          <strong>Run anyway</strong>. This is a one-time step per install; it
+          goes away once signed builds ship.
+        </p>
+
+        <h3>Linux</h3>
+        <p>
+          Download a <code>.deb</code>, <code>.rpm</code>, or distro-independent
+          <code>.AppImage</code> from the
+          <a href="https://github.com/thinkingsapiens/podsync/releases/latest">Releases page</a>,
+          or use the install script below, which grabs the <code>.AppImage</code>
+          and places it on your <code>PATH</code>. For the <code>.AppImage</code>
+          directly, make it executable first:
+        </p>
+        <div class="cmd">
+          <pre><code id="cmd-appimage">chmod +x PodSync_*.AppImage</code></pre>
+          <button class="copy" type="button" data-copy="#cmd-appimage">Copy</button>
+        </div>
+
+        <h3>macOS / Linux: install script</h3>
+        <p>
+          Downloads the latest release for your platform and installs it &mdash;
+          into <code>/Applications</code> on macOS, or <code>~/.local/bin</code>
+          on Linux. You don't need Homebrew. If you've never opened Terminal,
+          here is the whole thing:
         </p>
         <ol>
           <li>
@@ -80,21 +106,25 @@
             the command, then press <kbd>Return</kbd> to run it.
           </li>
           <li>
-            Wait. A progress bar fills while the 13 MB download runs, and the
-            last line tells you which version it installed. It never asks for
-            your password.
+            Wait. A progress bar fills while the download runs, and the
+            last line tells you which version it installed and where. It
+            never asks for your password.
           </li>
-          <li>Quit Terminal and open PodSync from your Applications folder.</li>
+          <li>
+            On macOS, open PodSync from your Applications folder. On Linux,
+            run <code>podsync</code> from a terminal, or launch it from
+            <code>~/.local/bin</code> if that's on your <code>PATH</code>.
+          </li>
         </ol>
         <p>
           Pasting a command you can't read is a fair thing to be wary of, so
           <a href="install.sh">read the script</a> first if you want. It's plain
           text. Quit PodSync before you run it if the app is already open. When
-          it replaces an existing install, it moves the old copy to the Trash
-          instead of deleting it.
+          it replaces an existing install, on macOS it moves the old copy to
+          the Trash instead of deleting it.
         </p>
 
-        <h3>Homebrew</h3>
+        <h3>Homebrew (macOS only)</h3>
         <p>
           If you already use <a href="https://brew.sh" target="_blank" rel="noopener">Homebrew</a>,
           this installs the same build and follows new releases, so
@@ -106,7 +136,7 @@
           <button class="copy" type="button" data-copy="#cmd-brew">Copy</button>
         </div>
 
-        <h3>Manual download</h3>
+        <h3>Manual download (macOS)</h3>
         <p>
           Download the latest <code>.dmg</code> from the
           <a href="https://github.com/thinkingsapiens/podsync/releases/latest">Releases page</a>,

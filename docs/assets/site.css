@@ -78,6 +78,10 @@ nav.site a:hover { color: var(--text); }
 .btn-secondary { color: var(--text); background: transparent; }
 .req { color: var(--text-muted); font-size: 13px; margin-top: 14px; }
 
+.platform-links { color: var(--text-muted); font-size: 13px; margin-top: 10px; }
+.platform-links a { color: var(--text-muted); text-decoration: underline; text-underline-offset: 2px; }
+.platform-links a:hover { color: var(--text); }
+
 .install {
   display: inline-flex;
   align-items: center;
