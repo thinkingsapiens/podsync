@@ -210,6 +210,100 @@
         </div>
       </section>
 
+      <section class="story-showcase" aria-label="App showcase">
+        <h2 class="section-title">PodSync in action</h2>
+        <div class="story-viewport" id="storyScroller">
+          <div class="story-track" id="storyTrack">
+            <div class="story-card" data-index="0">
+              <img src="assets/story/share-story-dark.webp" alt="Episode share card in dark mode" class="story-image" width="1600" height="1000" loading="lazy" decoding="async" />
+              <div class="story-overlay">
+                <h4>Share to stories</h4>
+                <p>Generate a card for any episode</p>
+              </div>
+            </div>
+            <div class="story-card" data-index="1">
+              <img src="assets/story/share-story-light.webp" alt="Episode share card in light mode" class="story-image" width="1600" height="1000" loading="lazy" decoding="async" />
+              <div class="story-overlay">
+                <h4>Light or dark cards</h4>
+                <p>Match the look you want</p>
+              </div>
+            </div>
+            <div class="story-card" data-index="2">
+              <img src="assets/story/share-portrait-dark.webp" alt="Portrait-format share card" class="story-image" width="1600" height="1000" loading="lazy" decoding="async" />
+              <div class="story-overlay">
+                <h4>Portrait share card</h4>
+                <p>Sized for stories and reels</p>
+              </div>
+            </div>
+            <div class="story-card" data-index="3">
+              <img src="assets/story/shell.webp" alt="PodSync main window" class="story-image" width="1600" height="1000" loading="lazy" decoding="async" />
+              <div class="story-overlay">
+                <h4>Native shell</h4>
+                <p>Feels at home on every platform</p>
+              </div>
+            </div>
+            <div class="story-card" data-index="4">
+              <img src="assets/story/playerbar-baseline.webp" alt="Mini player bar" class="story-image" width="1600" height="1000" loading="lazy" decoding="async" />
+              <div class="story-overlay">
+                <h4>Mini player</h4>
+                <p>Always-visible playback control</p>
+              </div>
+            </div>
+            <div class="story-card" data-index="5">
+              <img src="assets/story/transcript.webp" alt="Episode transcript view" class="story-image" width="1600" height="1000" loading="lazy" decoding="async" />
+              <div class="story-overlay">
+                <h4>On-device transcripts</h4>
+                <p>Full text, generated on your machine</p>
+              </div>
+            </div>
+            <div class="story-card" data-index="6">
+              <img src="assets/story/settings-dark.webp" alt="Settings screen" class="story-image" width="1600" height="1000" loading="lazy" decoding="async" />
+              <div class="story-overlay">
+                <h4>Settings</h4>
+                <p>Downloads, sync, appearance, ad detection</p>
+              </div>
+            </div>
+            <div class="story-card" data-index="7">
+              <img src="assets/story/upnext-popover.webp" alt="Up next queue popover" class="story-image" width="1600" height="1000" loading="lazy" decoding="async" />
+              <div class="story-overlay">
+                <h4>Up next</h4>
+                <p>See and reorder the queue</p>
+              </div>
+            </div>
+            <div class="story-card" data-index="8">
+              <img src="assets/story/speed-menu.webp" alt="Playback speed menu" class="story-image" width="1600" height="1000" loading="lazy" decoding="async" />
+              <div class="story-overlay">
+                <h4>Playback speed</h4>
+                <p>0.5x to 3x with pitch correction</p>
+              </div>
+            </div>
+            <div class="story-card" data-index="9">
+              <img src="assets/story/sleep-set.webp" alt="Sleep timer control" class="story-image" width="1600" height="1000" loading="lazy" decoding="async" />
+              <div class="story-overlay">
+                <h4>Sleep timer</h4>
+                <p>Stop after an episode or a set time</p>
+              </div>
+            </div>
+            <div class="story-card" data-index="10">
+              <img src="assets/story/add-podcast-search.webp" alt="Add a podcast search" class="story-image" width="1600" height="1000" loading="lazy" decoding="async" />
+              <div class="story-overlay">
+                <h4>Add a podcast</h4>
+                <p>Search by name or paste a feed URL</p>
+              </div>
+            </div>
+            <div class="story-card" data-index="11">
+              <img src="assets/story/share-square-dark.webp" alt="Square-format share card" class="story-image" width="1600" height="1000" loading="lazy" decoding="async" />
+              <div class="story-overlay">
+                <h4>Square share card</h4>
+                <p>For feed posts and thumbnails</p>
+              </div>
+            </div>
+          </div>
+          <div class="story-progress" aria-hidden="true"><span></span></div>
+        </div>
+        <p class="story-hint">Scroll to explore</p>
+      </section>
+
       <section class="faq" aria-label="Frequently asked questions">
         <h2 class="section-title">FAQ</h2>
 
@@ -262,6 +356,67 @@
       <div>&copy; <span id="year"></span> PodSync</div>
     </footer>
   </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="assets/site.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    const viewport = document.getElementById('storyScroller');
+    const track = document.getElementById('storyTrack');
+    const cards = gsap.utils.toArray('.story-card');
+    const fill = document.querySelector('.story-progress > span');
+    const hint = document.querySelector('.story-hint');
+
+    if (viewport && track && cards.length) {
+      // Only scroll-jack on a real pointer-capable viewport with motion
+      // allowed. Below 769px, or with prefers-reduced-motion, matchMedia
+      // reverts everything and the CSS leaves .story-viewport as a plain
+      // horizontal swipe strip.
+      const mm = gsap.matchMedia();
+
+      mm.add('(min-width: 769px) and (prefers-reduced-motion: no-preference)', () => {
+        // Pin length is tied to how far the track actually has to travel,
+        // so one screen of vertical scroll ~= one screen of sideways
+        // travel instead of the whole strip flashing past at once.
+        const horizontal = gsap.to(track, {
+          x: () => -(track.scrollWidth - viewport.clientWidth),
+          ease: 'none',
+          scrollTrigger: {
+            trigger: viewport,
+            start: 'top top',
+            end: () => '+=' + (track.scrollWidth - viewport.clientWidth),
+            scrub: 1,
+            pin: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+            onUpdate: (self) => {
+              if (fill) fill.style.transform = 'scaleX(' + self.progress + ')';
+              if (hint) hint.style.opacity = self.progress > 0.02 ? '0' : '';
+            },
+          },
+        });
+
+        cards.forEach((card) => {
+          gsap.from(card, {
+            opacity: 0,
+            scale: 0.94,
+            y: 24,
+            scrollTrigger: {
+              trigger: card,
+              containerAnimation: horizontal,
+              start: 'left 90%',
+              end: 'left 60%',
+              scrub: true,
+            },
+          });
+        });
+      });
+
+      // Screenshots reserve their box via CSS aspect-ratio, but re-measure
+      // once everything has painted so scrollWidth is exact.
+      window.addEventListener('load', () => ScrollTrigger.refresh());
+    }
+  </script>
 </body>
 </html>

@@ -94,6 +94,52 @@ The hero section above is a placeholder. Real shots to capture and drop into `as
 - Settings, light and dark appearance
 - One short GIF: add a podcast, play it, and dismiss a "Skipped an ad" toast
 
+## Showcase carousel assets
+
+The "PodSync in action" section on the home page (`index.html`, `.story-showcase`) is a
+GSAP scroll-driven carousel. Its images are downscaled WebP copies kept in
+`assets/story/`, not the full-res PNGs in `assets/` (all 12 together are ~580 KB, vs
+~3 MB at full res).
+
+**Source images.** The app's e2e suite renders 2x screenshots into `tests/e2e/assets/`
+in the main repo (see the app `CLAUDE.md`). Those are 2880x1800, i.e. 16:10. Copy the
+ones you want to feature into `website/assets/` under their existing names, same as the
+other site screenshots.
+
+**Convert for the carousel.** `cwebp` comes from `brew install webp`. From
+`website/assets/`, generate a 1600px-wide WebP per screenshot:
+
+```sh
+for name in shell transcript settings-dark speed-menu; do
+  cwebp -quiet -q 82 -resize 1600 0 "$name.png" -o "story/$name.webp"
+done
+```
+
+`-resize 1600 0` keeps the aspect ratio (2880x1800 -> 1600x1000). Quality 82 is the
+sweet spot; raise it for text-heavy shots that look soft. Keep the original PNG in
+`assets/` too, other pages may reference it.
+
+**Wire it into the carousel.** Add one `.story-card` inside `.story-track` in
+`index.html` (`data-index` is only for reference; order follows the DOM):
+
+```html
+<div class="story-card" data-index="12">
+  <img src="docs/assets/story/NAME.webp" alt="..." class="story-image"
+       width="1600" height="1000" loading="lazy" decoding="async" />
+  <div class="story-overlay">
+    <h4>Short label</h4>
+    <p>One line describing what's shown</p>
+  </div>
+</div>
+```
+
+No JS or CSS changes are needed: the 16:10 card sizing, the pinned scroll length, the
+progress bar, and the mobile / `prefers-reduced-motion` swipe fallback all adapt to the
+card count on their own. Every image must be 16:10 or `object-fit: cover` will crop it.
+
+**On a new release.** Capture the new feature in the e2e suite, copy its PNG into
+`assets/`, run the `cwebp` line above, and add a `.story-card`. That's the whole loop.
+
 ## Links
 
 - [Website](https://thinkingsapiens.github.io/podsync/)
